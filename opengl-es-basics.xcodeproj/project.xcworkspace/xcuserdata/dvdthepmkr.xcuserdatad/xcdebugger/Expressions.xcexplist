@@ -18,9 +18,25 @@
       </ContextState>
       <ContextState
          contextName = "opengl_es_basics.OpenGLView.setupVBOs (opengl_es_basics.OpenGLView)() -&gt; ():OpenGLView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Vertices">
+            </PersistentString>
+            <PersistentString
+               value = "Vertices.count">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "opengl_es_basics.OpenGLView.compileShaders (opengl_es_basics.OpenGLView)() -&gt; ():OpenGLView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "opengl_es_basics.OpenGLView.init (opengl_es_basics.OpenGLView.Type)(coder : ObjectiveC.NSCoder) -&gt; opengl_es_basics.OpenGLView:OpenGLView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Vertices">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

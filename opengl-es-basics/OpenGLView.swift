@@ -178,7 +178,8 @@ class OpenGLView: UIView {
         
         glGenBuffers(1, &vertexBuffer)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), vertexBuffer)
-        glBufferData(GLenum(GL_ARRAY_BUFFER), Vertices.count, Vertices, GLenum(GL_STATIC_DRAW))
+        println(Vertices.count)
+        glBufferData(GLenum(GL_ARRAY_BUFFER), Vertices.count * sizeof(Vertex), Vertices, GLenum(GL_STATIC_DRAW))
         
         //let positionSlotFirstComponent = UnsafePointer<Int>(0)
         let positionSlotFirstComponent = UnsafePointer<Int>(bitPattern: 0)
@@ -187,11 +188,12 @@ class OpenGLView: UIView {
         
         glEnableVertexAttribArray(colorSlot)
         let colorSlotFirstComponent = UnsafePointer<Int>(bitPattern: sizeof(CFloat) * 3)
+        
         glVertexAttribPointer(colorSlot, 4, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(sizeof(Vertex)), colorSlotFirstComponent)
         
         glGenBuffers(1, &indexBuffer)
         glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), indexBuffer)
-        glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), Indices.count, Indices, GLenum(GL_STATIC_DRAW))
+        glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), Indices.count * sizeof(GLbyte), Indices, GLenum(GL_STATIC_DRAW))
         
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), 0)
         glBindVertexArrayOES(0)
