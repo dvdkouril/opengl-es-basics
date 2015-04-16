@@ -39,6 +39,8 @@ class OpenGLView: UIView {
     var indexBuffer: GLuint = GLuint()
     var vertexBuffer: GLuint = GLuint()
     var VAO: GLuint = GLuint()
+    var program: GLuint = GLuint()
+    var time: CFloat = 0.0
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -47,15 +49,21 @@ class OpenGLView: UIView {
         self.setupContext()
         self.setupRenderBuffer()
         self.setupFrameBuffer()
-        self.compileShaders()
+        program = self.compileShaders()
         
         self.setupVBOs()
+        
+        self.setupUniforms()
         self.render()
     }
 
     override class func layerClass() -> AnyClass {
         return CAEAGLLayer.self
     }
+    
+    /*override class func drawRect(rect: CGRect) {
+        
+    }*/
     
     func setupLayer() {
         self.eaglLayer = self.layer as! CAEAGLLayer
@@ -135,7 +143,7 @@ class OpenGLView: UIView {
         
     }
     
-    func compileShaders() {
+    func compileShaders() -> GLuint {
         
         var vertexShader: GLuint = self.compileShader("SimpleVertex", shaderType: GLenum(GL_VERTEX_SHADER))
         var fragmentShader: GLuint = self.compileShader("SimpleFragment", shaderType: GLenum(GL_FRAGMENT_SHADER))
@@ -170,6 +178,8 @@ class OpenGLView: UIView {
         glEnableVertexAttribArray(self.positionSlot)
         glEnableVertexAttribArray(self.colorSlot)
         
+        
+        return programHandle
     }
     
     func setupVBOs() {
@@ -198,6 +208,11 @@ class OpenGLView: UIView {
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), 0)
         glBindVertexArrayOES(0)
         
+    }
+    
+    func setupUniforms() {
+        let timeUniform = glGetUniformLocation(program, "u_time")
+        glUniform1f(timeUniform, self.time)
     }
     
     
