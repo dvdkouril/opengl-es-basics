@@ -18,9 +18,9 @@ struct Vertex {
 }
 
 var Vertices = [
-    Vertex(Position: (1, -1, 0), Color: (1, 0, 0, 1)),
-    Vertex(Position: (1, 1, 0), Color: (0, 1, 0, 1)),
-    Vertex(Position: (-1, 1, 0), Color: (0, 0, 1, 1)),
+    Vertex(Position: (1, -1, 0) , Color: (1, 0, 0, 1)),
+    Vertex(Position: (1, 1, 0)  , Color: (0, 1, 0, 1)),
+    Vertex(Position: (-1, 1, 0) , Color: (0, 0, 1, 1)),
     Vertex(Position: (-1, -1, 0), Color: (0, 0, 0, 1))
 ]
 
@@ -36,6 +36,9 @@ class OpenGLView: UIView {
     var colorRenderBuffer: GLuint = GLuint()
     var positionSlot: GLuint = GLuint()
     var colorSlot: GLuint = GLuint()
+    var indexBuffer: GLuint = GLuint()
+    var vertexBuffer: GLuint = GLuint()
+    var VAO: GLuint = GLuint()
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -46,6 +49,7 @@ class OpenGLView: UIView {
         self.setupFrameBuffer()
         self.compileShaders()
         
+        self.setupVBOs()
         self.render()
     }
 
@@ -168,10 +172,52 @@ class OpenGLView: UIView {
         
     }
     
+    func setupVBOs() {
+        glGenVertexArraysOES(1, &VAO)
+        glBindVertexArrayOES(VAO)
+        
+        glGenBuffers(1, &vertexBuffer)
+        glBindBuffer(GLenum(GL_ARRAY_BUFFER), vertexBuffer)
+        glBufferData(GLenum(GL_ARRAY_BUFFER), Vertices.count, Vertices, GLenum(GL_STATIC_DRAW))
+        
+        //let positionSlotFirstComponent = UnsafePointer<Int>(0)
+        let positionSlotFirstComponent = UnsafePointer<Int>(bitPattern: 0)
+        glEnableVertexAttribArray(positionSlot)
+        glVertexAttribPointer(positionSlot, 3, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(sizeof(Vertex)), positionSlotFirstComponent)
+        
+        glEnableVertexAttribArray(colorSlot)
+        let colorSlotFirstComponent = UnsafePointer<Int>(bitPattern: sizeof(CFloat) * 3)
+        glVertexAttribPointer(colorSlot, 4, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(sizeof(Vertex)), colorSlotFirstComponent)
+        
+        glGenBuffers(1, &indexBuffer)
+        glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), indexBuffer)
+        glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), Indices.count, Indices, GLenum(GL_STATIC_DRAW))
+        
+        glBindBuffer(GLenum(GL_ARRAY_BUFFER), 0)
+        glBindVertexArrayOES(0)
+        
+    }
+    
+    
     func render() {
         glClearColor(0, 104.0/255.0, 55.0/255.0, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
+        
+        glBindVertexArrayOES(VAO)
+        glViewport(0, 0, GLint(self.frame.size.width), GLint(self.frame.size.height))
+        
+        glDrawElements(GLenum(GL_TRIANGLES), GLsizei(Indices.count), GLenum(GL_UNSIGNED_BYTE), nil)
         self.context.presentRenderbuffer(Int(GL_RENDERBUFFER))
+        
+        glBindVertexArrayOES(0)
+        
     }
+    /*func render() {
+        glClearColor(0, 104.0/255.0, 55.0/255.0, 1.0)
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
+        self.context.presentRenderbuffer(Int(GL_RENDERBUFFER))
+    }*/
 
 }
+
+

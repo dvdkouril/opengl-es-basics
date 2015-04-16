@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5E858496-29E7-4F92-87D5-2986D5643E88</string>
+	<key>IDESourceControlProjectName</key>
+	<string>opengl-es-basics</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2CAD4B10CA82FB5EAB21C789D5E8846F9346FEDE</key>
+		<string>https://github.com/dvdkouril/opengl-es-basics.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>opengl-es-basics.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2CAD4B10CA82FB5EAB21C789D5E8846F9346FEDE</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/dvdkouril/opengl-es-basics.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2CAD4B10CA82FB5EAB21C789D5E8846F9346FEDE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2CAD4B10CA82FB5EAB21C789D5E8846F9346FEDE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>opengl-es-basics</string>
+		</dict>
+	</array>
+</dict>
+</plist>
