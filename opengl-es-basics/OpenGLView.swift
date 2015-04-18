@@ -128,21 +128,23 @@ class OpenGLView: UIView {
         
         if compileSuccess == GL_FALSE {
             println("Failed to compile shader!")
+            var value: GLint = 0
+            glGetShaderiv(shaderHandle, GLenum(GL_INFO_LOG_LENGTH), &value)
+            var infoLog: [GLchar] = [GLchar](count: Int(value), repeatedValue: 0)
+            var infoLogLength: GLsizei = 0
+            glGetShaderInfoLog(shaderHandle, value, &infoLogLength, &infoLog)
+            var s = NSString(bytes: infoLog, length: Int(infoLogLength), encoding: NSASCIIStringEncoding)
+            println(s)
+
             exit(1)
         }
         
-        var value: GLint = 0
-        glGetShaderiv(shaderHandle, GLenum(GL_INFO_LOG_LENGTH), &value)
-        var infoLog: [GLchar] = [GLchar](count: Int(value), repeatedValue: 0)
-        var infoLogLength: GLsizei = 0
-        glGetShaderInfoLog(shaderHandle, value, &infoLogLength, &infoLog)
-        var s = NSString(bytes: infoLog, length: Int(infoLogLength), encoding: NSASCIIStringEncoding)
-        println(s)
         
         return shaderHandle
         
     }
     
+    // function compiles vertex and fragment shaders into program. Returns program handle
     func compileShaders() -> GLuint {
         
         var vertexShader: GLuint = self.compileShader("SimpleVertex", shaderType: GLenum(GL_VERTEX_SHADER))
@@ -182,6 +184,7 @@ class OpenGLView: UIView {
         return programHandle
     }
     
+    // function sets up Vertex Buffer Object
     func setupVBOs() {
         glGenVertexArraysOES(1, &VAO)
         glBindVertexArrayOES(VAO)
@@ -212,13 +215,18 @@ class OpenGLView: UIView {
     
     func setupUniforms() {
         let timeUniform = glGetUniformLocation(program, "u_time")
+        let resolutionUniform = glGetUniformLocation(program, "u_resolution")
         glUniform1f(timeUniform, self.time)
+        glUniform1f(resolutionUniform, CFloat(self.frame.width))
     }
     
-    
+    // function renders elements
     func render() {
         glClearColor(0, 104.0/255.0, 55.0/255.0, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
+        
+        self.time += 0.1
+        println(time)
         
         glBindVertexArrayOES(VAO)
         glViewport(0, 0, GLint(self.frame.size.width), GLint(self.frame.size.height))
@@ -229,12 +237,6 @@ class OpenGLView: UIView {
         glBindVertexArrayOES(0)
         
     }
-    /*func render() {
-        glClearColor(0, 104.0/255.0, 55.0/255.0, 1.0)
-        glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
-        self.context.presentRenderbuffer(Int(GL_RENDERBUFFER))
-    }*/
-
 }
 
 
