@@ -18,6 +18,7 @@
 		D71281811ADD516200472207 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71281801ADD516200472207 /* QuartzCore.framework */; };
 		D712818A1ADD9EA100472207 /* SimpleFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = D71281881ADD9EA100472207 /* SimpleFragment.glsl */; };
 		D712818B1ADD9EA100472207 /* SimpleVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = D71281891ADD9EA100472207 /* SimpleVertex.glsl */; };
+		D7432D671AE7976900D9464B /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7432D661AE7976900D9464B /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		D71281801ADD516200472207 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D71281881ADD9EA100472207 /* SimpleFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpleFragment.glsl; path = "opengl-es-basics/SimpleFragment.glsl"; sourceTree = "<group>"; };
 		D71281891ADD9EA100472207 /* SimpleVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpleVertex.glsl; path = "opengl-es-basics/SimpleVertex.glsl"; sourceTree = "<group>"; };
+		D7432D661AE7976900D9464B /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7432D671AE7976900D9464B /* GLKit.framework in Frameworks */,
 				D71281811ADD516200472207 /* QuartzCore.framework in Frameworks */,
 				D712817F1ADD510C00472207 /* OpenGLES.framework in Frameworks */,
 			);
@@ -71,6 +74,7 @@
 		D712814C1ADD4F6700472207 = {
 			isa = PBXGroup;
 			children = (
+				D7432D661AE7976900D9464B /* GLKit.framework */,
 				D71281881ADD9EA100472207 /* SimpleFragment.glsl */,
 				D71281891ADD9EA100472207 /* SimpleVertex.glsl */,
 				D71281801ADD516200472207 /* QuartzCore.framework */,
@@ -431,6 +435,7 @@
 				D71281761ADD4F6800472207 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D71281771ADD4F6800472207 /* Build configuration list for PBXNativeTarget "opengl-es-basicsTests" */ = {
 			isa = XCConfigurationList;
@@ -439,6 +444,7 @@
 				D71281791ADD4F6800472207 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -42,6 +42,7 @@ class OpenGLView: UIView {
     var program: GLuint = GLuint()
     var time: CFloat = 0.0
     
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
