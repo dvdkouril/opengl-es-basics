@@ -238,6 +238,12 @@ class OpenGLView: UIView {
         glBindVertexArrayOES(0)
         
     }
+    
+    override func drawRect(rect: CGRect) {
+        self.time += 0.1
+        println(time)
+        render()
+    }
 }
 
 
